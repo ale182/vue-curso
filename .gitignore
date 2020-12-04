@@ -84,3 +84,4 @@ lerna-debug.log*
 .docker/scbr-minecraft-mssql
 package-lock.json
 yarn.lock
+.DS_Store
