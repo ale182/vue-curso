@@ -1,0 +1,27 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+
+    <p>{{ titulo }}</p>
+<!--    tudo q estiver dentro de {{ }} tem que ser string
+    entao o return da funcao DEVE retornar string-->
+    <p>{{ saudacao() }}</p>
+</div>
+
+<script>
+    new Vue({
+        // instanciando o Vue, tem todo acesso do q esta dentro de
+        // data e de metodos
+
+        el: '#app',
+        data: {
+            titulo: 'Usando VueJs'
+        },
+        methods: {
+            saudacao: function () {
+                console.log(this)
+                return this.titulo
+            }
+        }
+    })
+</script>

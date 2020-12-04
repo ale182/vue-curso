@@ -1,0 +1,50 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+    <p>{{ contador }}</p>
+<!--    se passar parametro personalizado o event nao é passado automaticamente
+    para passar o event, tem q usar o $event-->
+    <button v-on:click="somar($event , 5)">Somar</button>
+    <p v-on:mousemove="atualizaXy">
+        Mouse {{ x }} e {{ y }}
+        <span v-on:mousemove="parar">PARAR AQUI!!!</span>
+<!--        outra forma de fazer para parar a propagacao-->
+        <span v-on:mousemove.stop>PARAR AQUI TAMBEM!!!</span>
+
+        <!-- parar a propagacao e retira o comportamento padrao-->
+        <span v-on:mousemove.stop.prevent="">PARAR SEM PREVENT</span>
+    </p>
+    <!--dessa forma, retira o comportamento padrao, nao vai seguir o link-->
+    <a v-on:click.prevent="" href="http://google.com">Google</a>
+
+    <!--outra forma de fazer-->
+    <a v-on:click="naoNavegar" href="http://google.com">Google</a>
+
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data:{
+            contador : 0,
+            x : 0,
+            y : 0
+        },
+        methods:{
+            somar(event,passo){
+                console.log(event)
+                this.contador += passo
+            },
+            atualizaXy(event){
+                this.x = event.clientX;
+                this.y = event.clientY;
+            },
+            parar(ev){
+                ev.stopPropagation();
+            },
+            naoNavegar(e){
+                e.preventDefault();
+            }
+        }
+    })
+</script>

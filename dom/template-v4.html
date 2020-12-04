@@ -1,0 +1,28 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+
+    <p>{{ titulo }}</p>
+    <p c4l3-bind="abc">{{ saudacao() }}</p>
+    <!--direitiva , propriedade personalizada , nao nativa do HTML-->
+    <a v-bind:href="link" link>Google</a>
+</div>
+
+<script>
+    new Vue({
+        // instanciando o Vue, tem todo acesso do q esta dentro de
+        // data e de metodos
+
+        el: '#app',
+        data: {
+            titulo: 'Usando VueJs',
+            link:'http://google.com'
+        },
+        methods: {
+            saudacao: function () {
+                console.log(this)
+                return this.titulo
+            }
+        }
+    })
+</script>

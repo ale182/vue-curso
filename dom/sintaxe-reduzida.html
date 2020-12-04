@@ -1,0 +1,29 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+    <p>{{ contador }}</p>
+<!--    sintaxe normal-->
+<!--    <button v-on:click="somar">Somar 1</button>-->
+<!--    sintaxe reduzida-->
+    <button @click="somar">Somar 1</button>
+    <hr>
+    <!--    sintaxe normal-->
+<!--    <input type="text" v-bind:value="contador">-->
+<!--    sintaxe reduzida-->
+    <input type="text" :value="contador">
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data:{
+            contador : 0
+        },
+        methods:{
+            somar(event){
+                console.log(event)
+                this.contador++
+            }
+        }
+    })
+</script>

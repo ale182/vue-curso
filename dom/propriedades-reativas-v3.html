@@ -1,0 +1,62 @@
+<script src="https://unpkg.com/vue"></script>
+
+<div id="app">
+ <button v-on:click="aumentar">Aumentar</button>
+ <button v-on:click="contador2++">Aumentar 2</button>
+ <button v-on:click="diminuir">Diminuir</button>
+    <p>Contador : {{contador}} e {{contador2}}</p>
+    <p>Resultado : {{resultadoComputado}}</p>
+    <p>Resultado : {{resultadoFuncao()}}</p>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data:{
+            contador: 0,
+            contador2: 0,
+        },
+/*        Qdo tem o computed, o Vue JS executa somente do que ele sabe q tem relacao
+        ou seja, se atualizar o contador2, ele nao vai chamar a funcao resultado*/
+        // propriedades computadas sao sincronas, sempre ele espera o retorno do valor
+        computed:{
+            resultadoComputado(){
+                console.log('rodando resultado computed')
+                return this.contador >= 5 ? 'Maior , igual 5' : 'Menor 5'
+            }
+        },
+        // propriedades que serao monitoradas pelo Vue
+        // é assincrono, vc "dispara" qdo tem alteracao da variavel
+        watch:{
+            // exemplo de uso, combobox de estado e cidade
+            // qdo altera o estado, pode fazer uma requisicao para preencher as cidades
+
+            // tem q obrigatoriamente ser o mesmo nome da variavel
+            contador(novo , antigo){
+/*                console.log(novo , antigo)
+                setTimeout(() =>{
+                  this.contador = 0
+                } , 2000)*/
+                // se nao user o arrow function (=>), o this é do JS e nao do Vue
+                // entao tem que "salvar" antes para usar depois
+                const instanciaVue = this ;
+                setTimeout(() =>{
+                    instanciaVue.contador = 0
+                } , 2000)
+
+            }
+        },
+        methods:{
+            aumentar(){
+                this.contador++
+            },
+            diminuir(){
+                this.contador--
+            },
+            resultadoFuncao(){
+                console.log('rodando resultado em funcao')
+                return this.contador >= 5 ? 'Maior , igual 5' : 'Menor 5'
+            }
+        }
+    })
+</script>

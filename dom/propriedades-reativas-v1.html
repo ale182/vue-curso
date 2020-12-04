@@ -1,0 +1,19 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+    <p>{{ titulo }}</p>
+    <!-- Two way data binding , a partir do input , altera o titulo e altera o HTML -->
+    <input type="text" v-bind:value="titulo" v-on:input="titulo = $event.target.value" >
+<!--    Jeito mais facil, usando o v-model-->
+    <input type="text" v-model="titulo">
+<!--HTML atualiza os dados do JavaScript e o q atualiza no Vue, atualiza o HTML-->
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data:{
+            titulo: 'Usando VueJs'
+        }
+    })
+</script>
